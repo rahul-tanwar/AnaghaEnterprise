@@ -1,0 +1,7 @@
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\bin\Debug\AnaghaEnterprises.Models.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\bin\Debug\AnaghaEnterprises.Models.pdb
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\bin\Debug\AnaghaEnterprises.DataAccess.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\bin\Debug\AnaghaEnterprises.DataAccess.pdb
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\obj\Debug\AnaghaEnterprises.Models.csprojResolveAssemblyReference.cache
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\obj\Debug\AnaghaEnterprises.Models.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.Models\obj\Debug\AnaghaEnterprises.Models.pdb

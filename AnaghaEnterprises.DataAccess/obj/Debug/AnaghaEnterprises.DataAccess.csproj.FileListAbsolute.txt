@@ -1,0 +1,9 @@
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\AnaghaEnterprises.DataAccess.dll.config
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\AnaghaEnterprises.DataAccess.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\AnaghaEnterprises.DataAccess.pdb
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\obj\Debug\AnaghaEnterprises.DataAccess.dll
+C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\obj\Debug\AnaghaEnterprises.DataAccess.pdb

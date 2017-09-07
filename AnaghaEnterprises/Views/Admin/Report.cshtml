@@ -1,0 +1,154 @@
+﻿@model AnaghaEnterprises.Models.InvoiceReport
+@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Report</li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Search Invoice</h3>
+                </div>
+                <div class="box-body">
+
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <input type="text" name="daterange" id="daterange1" />
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </div>
+
+                        <a href="#" id="cmd">generate PDF</a>
+
+                    </div>
+
+                    <hr />
+    
+
+                        <div class="row" id="InvoiceGSTReportContainer" style="background-color:white;">
+
+                @{
+                    if (Model != null && Model.InvoiceList != null)
+                    {
+
+                        <div class="col-md-12">
+                            <table class="table table-responsive table-bordered" style="width:100%;border" cellspacing="0">
+                                <thead>
+                                    <tr style="background:white;">
+                                        <th>Invoice Id</th>
+                                        <th>Invoice Date</th>
+                                        <th>IGST</th>
+                                        <th>CGST</th>
+                                        <th>SGST</th>
+                                        <th>GST</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model.InvoiceList)
+                                {
+                                <tr>
+                                    <td>@item.InvoiceID</td>
+                                    <td>@item.InvoiceDate</td>
+                                    <td>@item.Total_IGST</td>
+                                    <td>@item.Total_CGST</td>
+                                    <td>@item.Total_SGST</td>
+                                    <td>@item.Total_GST</td>
+                                    <td>@item.TotalAfterRoundOff</td>
+                                </tr>
+
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-12 reportsummery">
+                            <div class="col-md-4 reset pull-right">
+                                <table class="table table-bordered">
+                                    <tr><th>Total CGST:</th><td>@Model.TotalCGST</td></tr>
+                                    <tr><th>Total IGST:</th><td>@Model.TotalIGST</td></tr>
+                                    <tr><th>Total SGST:</th><td>@Model.TotalSGST</td></tr>
+                                    <tr><th>Total GST:</th><td>@Model.TotalGST</td></tr>
+                                    <tr><th>Total Amount Before Tax:</th><td>@Model.TotalAmountBefore</td></tr>
+                                    <tr><th>Total Amount After Tax:</th><td>@Model.TotalAmountAfter</td></tr>
+                                </table>
+
+                            </div>
+                        </div>
+
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+
+
+            </div>
+
+
+                    </div>
+                <div id="editor"></div>
+                <div class="box-footer">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#daterange1").daterangepicker(
+            {
+                autoUpdateInput: false,
+                locale: {
+                    format: 'DD-MM-YYYY'
+                }
+            },
+     function (start, end, label) {
+
+         AdminHelper.GetInvoiceReport(start.format('DD-MM-YYYY') + '|' + end.format('DD-MM-YYYY'));
+
+     });
+
+          $('#cmd').click(function () {
+            var htmlstring = JSON.stringify({ 'htmlstring': $("#InvoiceGSTReportContainer").html() });
+            $.ajax({
+                url: "../Admin/generate",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: htmlstring, // pass that text to the server as a correct JSON String
+                success: function (msg) {
+                    debugger;
+                    if (msg == true)
+                    {
+                        window.location = '/Admin/Download';
+                    }
+                    
+                },
+                error: function (type) {
+                    window.location = '/Admin/Download';
+                }
+
+            });
+        });
+    });
+</script>
+
+
+

@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AnaghaEnterprisesModelStoreContainer" CdmEntityContainer="AnaghaEnterprisesEntities">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logs">
+      <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Log">
+        <MappingFragment StoreEntitySet="Log">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Thread" ColumnName="Thread" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Logger" ColumnName="Logger" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="roles">
+      <EntityTypeMapping TypeName="AnaghaEnterprisesModel.role">
+        <MappingFragment StoreEntitySet="roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="TotalAfterRoundOff" ColumnName="TotalAfterRoundOff" />
+          <ScalarProperty Name="TotalAmountAfterTax" ColumnName="TotalAmountAfterTax" />
+          <ScalarProperty Name="Total_GST" ColumnName="Total_GST" />
+          <ScalarProperty Name="Total_IGST" ColumnName="Total_IGST" />
+          <ScalarProperty Name="Total_SGST" ColumnName="Total_SGST" />
+          <ScalarProperty Name="Total_CGST" ColumnName="Total_CGST" />
+          <ScalarProperty Name="TotalAmountBeforeTax" ColumnName="TotalAmountBeforeTax" />
+          <ScalarProperty Name="Total_Nos_Kg" ColumnName="Total_Nos_Kg" />
+          <ScalarProperty Name="Total_Nos_Bag" ColumnName="Total_Nos_Bag" />
+          <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="PAN_No" ColumnName="PAN_No" />
+          <ScalarProperty Name="GST_No" ColumnName="GST_No" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="DateTimeSupply" ColumnName="DateTimeSupply" />
+          <ScalarProperty Name="LR_Date" ColumnName="LR_Date" />
+          <ScalarProperty Name="LR_No" ColumnName="LR_No" />
+          <ScalarProperty Name="Veh_No" ColumnName="Veh_No" />
+          <ScalarProperty Name="TransportationMode" ColumnName="TransportationMode" />
+          <ScalarProperty Name="PO_No" ColumnName="PO_No" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceLines">
+      <EntityTypeMapping TypeName="AnaghaEnterprisesModel.InvoiceLine">
+        <MappingFragment StoreEntitySet="InvoiceLine">
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="IGST_Amount" ColumnName="IGST_Amount" />
+          <ScalarProperty Name="IGST_Rate" ColumnName="IGST_Rate" />
+          <ScalarProperty Name="SGST_Amount" ColumnName="SGST_Amount" />
+          <ScalarProperty Name="SGST_Rate" ColumnName="SGST_Rate" />
+          <ScalarProperty Name="CGST_Amount" ColumnName="CGST_Amount" />
+          <ScalarProperty Name="CGST_Rate" ColumnName="CGST_Rate" />
+          <ScalarProperty Name="TaxableValue" ColumnName="TaxableValue" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Uom" ColumnName="Uom" />
+          <ScalarProperty Name="Nos_Bag" ColumnName="Nos_Bag" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+          <ScalarProperty Name="InvoiceLineID" ColumnName="InvoiceLineID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

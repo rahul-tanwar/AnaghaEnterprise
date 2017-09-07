@@ -1,0 +1,116 @@
+﻿@model AnaghaEnterprises.Models.Invoice
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <button type="button"  class="btn-sm btn-primary float-right ml-1 mb-2" onclick="AdminHelper.addinvoiceline('DeleteLine')">
+            <i class="fa fa-fw fa-minus"></i>
+
+        </button>
+        <button type="button" class="btn-sm btn-primary float-right mb-2" onclick="AdminHelper.addinvoiceline('AddLine')">
+            <i class="fa fa-fw fa-plus"></i>
+
+        </button>
+
+    </div>
+    <div class="panel-body">
+        <table id="Linetable" class="table table-bordered table-list">
+            <thead>
+                <tr>
+                    <th class="w-4">Sr. No.</th>
+                    <th class="w-19">Description</th>
+                    <th class="w-6">Nos/Bag</th>
+                    <th class="w-6">UOM</th>
+                    <th class="w-5">Rate</th>
+                    <th class="w-6">Amount</th>
+                    <th class="w-6">Discount</th>
+                    <th class="w-6">Taxable Value</th>
+                    <th class="w-11 reset" colspan="2"><span class="w-100 float-left">CGST</span><span class="w-50 float-left">Rate</span><span class="w-50 float-left">Amount</span></th>
+                    <th class="w-11 reset" colspan="2"><span class="w-100 float-left">SGST</span><span class="w-50 float-left">Rate</span><span class="w-50 float-left">Amount</span></th>
+                    <th class="w-11 reset" colspan="2"><span class="w-100 float-left">IGST</span><span class="w-50 float-left">Rate</span><span class="w-50 float-left">Amount</span></th>
+                    <th class="w-9">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    for (int i = 0; i < Model.InvoiceLineList.Count; i++)
+                    {
+                        <tr >
+                            <td>@i</td>
+                            <td>
+                                @Html.TextBoxFor(m => m.InvoiceLineList[i].Description, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Description)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.InvoiceLineList[i].Nos_Bag, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Nos_Bag)
+                            </td>
+                            <td>
+                                @Html.TextBoxFor(m => m.InvoiceLineList[i].Uom, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Uom)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].Rate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Rate)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].Amount, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Amount)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].Discount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].Discount)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].TaxableValue, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].TaxableValue)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].CGST_Rate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].CGST_Rate)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].CGST_Amount, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].CGST_Amount)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].SGST_Rate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].SGST_Rate)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].SGST_Amount, new { @class = "form-control"})
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].SGST_Amount)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].IGST_Rate, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].IGST_Rate)
+                            </td>
+                            <td>@Html.TextBoxFor(m => m.InvoiceLineList[i].IGST_Amount, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.InvoiceLineList[i].IGST_Amount)</td>
+                            <td id='@(i+"TotalLabel")'></td>
+                            @Html.HiddenFor(m => m.InvoiceLineList[i].Total)
+
+                            @*@Html.HiddenFor(m => m.InvoiceLineList[i].TaxableValue)
+                            @Html.HiddenFor(m => m.InvoiceLineList[i].CGST_Amount)
+                            @Html.HiddenFor(m => m.InvoiceLineList[i].SGST_Amount)
+                            @Html.HiddenFor(m => m.InvoiceLineList[i].IGST_Amount)*@
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td colspan="2">Total</td>
+                    <td id="Total-Nos-Bag"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="Total-Taxable-Value"></td>
+                    <td></td>
+                    <td id="Total-CGST-Amount"></td>
+                    <td></td>
+                    <td id="Total-SGST-Amount"></td>
+                    <td></td>
+                    <td id="Total-IGST-Amount"></td>
+                    <td id="Total-Amount"></td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script>
+    $("#Linetable").on("blur", "input", function () {
+       AdminHelper.CalculateInvoice();
+    });
+
+</script>

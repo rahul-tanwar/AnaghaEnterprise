@@ -1,0 +1,323 @@
+﻿@model AnaghaEnterprises.Models.Invoice
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Create</li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Bill Invoice</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                 @using (Ajax.BeginForm("SaveInvoice", "Admin", null, new AjaxOptions
+                 {
+                     HttpMethod = "post",
+                     OnSuccess = "CommonJS.OnSuccessComment(data)",
+                    OnFailure = "CommonJS.OnFailure()"
+                 }, new { @id = "SaveInvoice"}))
+                 {
+
+                    <div class="box-body">
+                        <fieldset>
+                            <legend>Invoice info</legend>
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Invoice No.</label>
+                                        @Html.TextBoxFor(m => m.InvoiceID, new { @class = "form-control", @placeholder = "Invoice number" })
+                                        @Html.ValidationMessageFor(m => m.InvoiceID)
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Invoice Date</label>
+                                        
+           
+                                        @*<div class='input-group date' id='InvoiceDate'>
+                                            <input type='text' class="form-control" name="InvoiceDate"/>
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>*@
+                                         @Html.TextBoxFor(m => m.InvoiceDate, new { @class = "form-control", @placeholder = "Invoice Date" })                                         
+                                         @Html.ValidationMessageFor(m => m.InvoiceDate)
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="PO_No">PO No.</label>
+                                        @Html.TextBoxFor(m => m.PO_No, new { @class = "form-control", @placeholder = "PO No" })
+                                        @Html.ValidationMessageFor(m => m.PO_No)
+                                     </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Transportation info</legend>
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Transportation Modes</label>
+                                        @Html.TextBoxFor(m => m.TransportationMode, new { @class = "form-control", @placeholder = "Transportation Modes" })
+                                        @Html.ValidationMessageFor(m => m.TransportationMode)
+
+
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Veh. No</label>
+                                        @Html.TextBoxFor(m => m.Veh_No, new { @class = "form-control", @placeholder = "Veh. No" })
+                                        @Html.ValidationMessageFor(m => m.Veh_No)
+                                      </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">LR No.</label>
+                                        @Html.TextBoxFor(m => m.LR_No, new { @class = "form-control", @placeholder = "LR No" })
+                                        @Html.ValidationMessageFor(m => m.LR_No)
+                                     </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">LR Date</label>
+                                        @*<div class='input-group date' id='LR_Date'>
+                                            <input type='text' class="form-control" name="LR_Date" />
+                                            <span class="input-group-addon ">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>*@
+                                        @Html.TextBoxFor(m => m.LR_Date, new { @class = "form-control", @placeholder = "LR Date" })
+                                        @Html.ValidationMessageFor(m => m.LR_Date)
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Date & Times Supply</label>
+                                        @*<div class='input-group date' id='DateTimeSupply'>
+                                            <input type='text' class="form-control" name="DateTimeSupply" />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>*@
+                                        @Html.TextBoxFor(m => m.DateTimeSupply, new { @class = "form-control", @placeholder = "Date & Times Supply" })
+                                        @Html.ValidationMessageFor(m => m.DateTimeSupply)
+
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Billing Info</legend>
+
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Customer Name</label>
+                                        @Html.TextBoxFor(m => m.CustomerName, new { @class = "form-control", @placeholder = "Customer Name" })
+                                        @Html.ValidationMessageFor(m => m.CustomerName)
+
+                                     </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>GST No.</label>
+                                        @Html.TextBoxFor(m => m.GST_No, new { @class = "form-control", @placeholder = "GST No" })
+                                        @Html.ValidationMessageFor(m => m.GST_No)
+
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>PAN No.</label>
+                                        @Html.TextBoxFor(m => m.PAN_No, new { @class = "form-control", @placeholder = "PAN No" })
+                                        @Html.ValidationMessageFor(m => m.PAN_No)
+
+
+                                     </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Company Address</label>
+                                        @Html.TextAreaFor(m => m.CompanyAddress, new { @class = "form-control", @placeholder = "Company Address", @rows = "2" })
+                                        @Html.ValidationMessageFor(m => m.CompanyAddress)
+
+
+                                     </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+                        <fieldset>
+                            <legend>Shipping Info</legend>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Shipping Address</label>
+                                        @Html.TextAreaFor(m => m.ShippingAddress, new { @class = "form-control", @placeholder = "Shipping Address", @rows = "2" })
+                                        @Html.ValidationMessageFor(m => m.ShippingAddress)
+                                     </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Item Info</legend>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @{
+                                        Html.RenderPartial("_InvoiceLine");
+                                    }
+                           </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Invoice Summery</legend>
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <table id="mytable" class="table table-bordered table-list">
+                                        <tbody>
+                                            <tr>
+                                                <td class="w-50">Total Nos/Kgs : <span id="Total_Nos_KgLabel"></span></td>
+                                                <td class="w-25">Total Amount Before Tax:</td>
+                                                <td class="w-25" id="TotalAmountBeforeTaxLabel"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td rowspan="6">Total Invoice Amount in Words:</td>
+                                                <td>Add : CGST</td>
+                                                <td id="Total_CGSTLabel"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Add : SGST</td>
+                                                <td id="Total_SGSTLabel"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Add : IGST</td>
+                                                <td id="Total_IGSTLabel"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Tax Amount : GST</td>
+                                                <td id="Total_GSTLabel"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Total Amount After Tax</td>
+                                                <td id="TotalAmountAfterTaxLabel"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Total After Round off</td>
+                                                <td id="TotalAfterRoundOffLabel"></td>
+                                           </tr>
+
+
+
+                                        </tbody>
+                                    </table>
+                                    @Html.HiddenFor(m => m.TotalAmountBeforeTax, new { @id = "TotalAmountBeforeTax" })
+                                    @Html.HiddenFor(m => m.Total_Nos_Kg, new { @id = "Total_Nos_Kg" })
+                                    @Html.HiddenFor(m => m.Total_Nos_Bag, new { @id = "Total_Nos_Bag" })
+                                    @Html.HiddenFor(m => m.Total_CGST, new { @id = "Total_CGST" })
+                                    @Html.HiddenFor(m => m.Total_SGST, new { @id = "Total_SGST" })
+                                    @Html.HiddenFor(m => m.Total_IGST, new { @id = "Total_IGST" })
+                                    @Html.HiddenFor(m => m.Total_GST, new { @id = "Total_GST" })
+                                    @Html.HiddenFor(m => m.TotalAmountAfterTax, new { @id = "TotalAmountAfterTax" })
+                                    @Html.HiddenFor(m => m.TotalAfterRoundOff, new { @id = "TotalAfterRoundOff" })
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <input type="submit" class="btn-sm btn-primary" value="SUBMIT"/>
+                        <button type="reset" class="btn-sm btn-primary">Reset</button>
+                    </div>
+                   }
+            </div>
+            <!-- /.box -->
+        </div>
+
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+        //$.validator.addMethod('date',
+        // function (value, element) {
+        //     if (this.optional(element)) {
+        //         return true;
+        //     }
+        //     var valid = true;
+        //     try {
+        //         $.datepicker.parseDate('DD/MM/YYYY', value);
+        //     }
+        //     catch (err) {
+        //         valid = false;
+        //     }
+        //     return valid;
+        // });
+
+        $('#InvoiceDate,#LR_Date').datetimepicker({
+            format: 'DD/MM/YYYY',
+           defaultDate: new Date()
+        });
+        $('#DateTimeSupply').datetimepicker({
+            format: 'DD/MM/YYYY HH:MM:ss',
+            defaultDate: new Date()
+        });
+
+        //$.validator.methods.date = function (value, element) {
+        //    Globalize.culture("en-GB");
+        //    return this.optional(element) || Globalize.parseDate(value) !== null;
+        //}
+
+        //$.culture = Globalize.culture("en-GB");
+        //$.validator.methods.date = function (value, element) {
+        //    //This is not ideal but Chrome passes dates through in ISO1901 format regardless of locale
+        //    //and despite displaying in the specified format.
+
+        //    return this.optional(element)
+        //        || Globalize.parseDate(value, "dd/MM/yyyy", "en-GB")
+        //        || Globalize.parseDate(value, "yyyy-mm-dd");
+        //}
+    });
+
+
+
+   
+</script>

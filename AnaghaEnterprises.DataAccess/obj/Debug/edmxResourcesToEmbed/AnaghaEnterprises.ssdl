@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AnaghaEnterprisesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="RoleId" Type="smallint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="InvoiceID" />
+    </Key>
+    <Property Name="InvoiceID" Type="bigint" Nullable="false" />
+    <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="PO_No" Type="nvarchar" MaxLength="100" />
+    <Property Name="TransportationMode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Veh_No" Type="nvarchar" MaxLength="100" />
+    <Property Name="LR_No" Type="nvarchar" MaxLength="100" />
+    <Property Name="LR_Date" Type="datetime" />
+    <Property Name="DateTimeSupply" Type="datetime" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="GST_No" Type="nvarchar" MaxLength="100" />
+    <Property Name="PAN_No" Type="nvarchar" MaxLength="100" />
+    <Property Name="CompanyAddress" Type="nvarchar" MaxLength="4000" />
+    <Property Name="ShippingAddress" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Total_Nos_Bag" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total_Nos_Kg" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="TotalAmountBeforeTax" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total_CGST" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total_SGST" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total_IGST" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total_GST" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="TotalAmountAfterTax" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="TotalAfterRoundOff" Type="decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <EntityType Name="InvoiceLine">
+    <Key>
+      <PropertyRef Name="InvoiceLineID" />
+    </Key>
+    <Property Name="InvoiceLineID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="InvoiceID" Type="bigint" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nos_Bag" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Uom" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Amount" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="TaxableValue" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="CGST_Rate" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="CGST_Amount" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="SGST_Rate" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="SGST_Amount" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IGST_Rate" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="IGST_Amount" Type="decimal" Precision="13" Scale="2" />
+    <Property Name="Total" Type="decimal" Precision="13" Scale="2" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AnaghaEnterprises.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Log">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Thread" />
+      <PropertyRef Name="Level" />
+      <PropertyRef Name="Logger" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Exception" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'AnaghaEnterprises.dbo.roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="RoleName" />
+    </Key>
+    <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__InvoiceLi__Invoi__0CBAE877">
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InvoiceLine" Type="Self.InvoiceLine" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Invoice">
+        <PropertyRef Name="InvoiceID" />
+      </Principal>
+      <Dependent Role="InvoiceLine">
+        <PropertyRef Name="InvoiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AnaghaEnterprisesModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceLine" EntityType="Self.InvoiceLine" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log" EntityType="Self.Log" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Log].[Id] AS [Id], 
+    [Log].[Date] AS [Date], 
+    [Log].[Thread] AS [Thread], 
+    [Log].[Level] AS [Level], 
+    [Log].[Logger] AS [Logger], 
+    [Log].[Message] AS [Message], 
+    [Log].[Exception] AS [Exception]
+    FROM [dbo].[Log] AS [Log]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="roles" EntityType="Self.roles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [roles].[RoleId] AS [RoleId], 
+    [roles].[RoleName] AS [RoleName]
+    FROM [dbo].[roles] AS [roles]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__InvoiceLi__Invoi__0CBAE877" Association="Self.FK__InvoiceLi__Invoi__0CBAE877">
+      <End Role="Invoice" EntitySet="Invoice" />
+      <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

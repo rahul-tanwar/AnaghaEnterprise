@@ -1,0 +1,70 @@
+﻿@model  List<AnaghaEnterprises.Models.Invoice>
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs -->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Search</li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Search Invoice</h3>
+                </div>
+                <div class="box-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Invoice Id</th>
+                                    <th>Invoice Date</th>
+                                    <th>Customer Name</th>
+                                    <th>Total Amount Before Tax</th>
+                                    <th>Total GST</th>
+                                    <th>Total After RoundOff</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                           <tbody>
+                             
+                                  @foreach (var item in Model)
+                                  {
+                                    <tr>
+                                        <td>@item.InvoiceID</td>
+                                        <td>@item.InvoiceDate</td>
+                                        <td>@item.CustomerName</td>
+                                        <td>@item.TotalAmountBeforeTax</td>
+                                        <td>@item.Total_GST</td>
+                                        <td>@item.TotalAfterRoundOff</td>
+                                        <td><i class="fa fa-trash-o" aria-hidden="true" onclick="AdminHelper.DeleteInvoice(@item.InvoiceID)"/></td>
+                                    </tr>
+                                  }
+                        </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box-footer">
+
+                </div>
+                </div>
+                </div>
+
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+

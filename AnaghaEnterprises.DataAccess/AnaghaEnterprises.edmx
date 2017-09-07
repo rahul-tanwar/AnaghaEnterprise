@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AnaghaEnterprisesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RoleId" Type="smallint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="bigint" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="PO_No" Type="nvarchar" MaxLength="100" />
+          <Property Name="TransportationMode" Type="nvarchar" MaxLength="100" />
+          <Property Name="Veh_No" Type="nvarchar" MaxLength="100" />
+          <Property Name="LR_No" Type="nvarchar" MaxLength="100" />
+          <Property Name="LR_Date" Type="datetime" />
+          <Property Name="DateTimeSupply" Type="datetime" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="100" />
+          <Property Name="GST_No" Type="nvarchar" MaxLength="100" />
+          <Property Name="PAN_No" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyAddress" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ShippingAddress" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Total_Nos_Bag" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_Nos_Kg" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAmountBeforeTax" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_CGST" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_SGST" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_IGST" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total_GST" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAmountAfterTax" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAfterRoundOff" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="InvoiceLineID" />
+          </Key>
+          <Property Name="InvoiceLineID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceID" Type="bigint" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nos_Bag" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Uom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rate" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Amount" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Discount" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="TaxableValue" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="CGST_Rate" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="CGST_Amount" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="SGST_Rate" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="SGST_Amount" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="IGST_Rate" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="IGST_Amount" Type="decimal" Precision="13" Scale="2" />
+          <Property Name="Total" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AnaghaEnterprises.dbo.Log' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Exception" Type="varchar" MaxLength="2000" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'AnaghaEnterprises.dbo.roles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__InvoiceLi__Invoi__0CBAE877">
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceLine" Type="Self.InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AnaghaEnterprisesModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceLine" EntityType="Self.InvoiceLine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log" EntityType="Self.Log" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Log].[Id] AS [Id], 
+    [Log].[Date] AS [Date], 
+    [Log].[Thread] AS [Thread], 
+    [Log].[Level] AS [Level], 
+    [Log].[Logger] AS [Logger], 
+    [Log].[Message] AS [Message], 
+    [Log].[Exception] AS [Exception]
+    FROM [dbo].[Log] AS [Log]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="roles" EntityType="Self.roles" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [roles].[RoleId] AS [RoleId], 
+    [roles].[RoleName] AS [RoleName]
+    FROM [dbo].[roles] AS [roles]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__InvoiceLi__Invoi__0CBAE877" Association="Self.FK__InvoiceLi__Invoi__0CBAE877">
+            <End Role="Invoice" EntitySet="Invoice" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLine" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AnaghaEnterprisesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminId" />
+          </Key>
+          <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="Int16" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Date" />
+            <PropertyRef Name="Thread" />
+            <PropertyRef Name="Level" />
+            <PropertyRef Name="Logger" />
+            <PropertyRef Name="Message" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Thread" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Logger" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exception" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="RoleName" />
+          </Key>
+          <Property Name="RoleId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="AnaghaEnterprisesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="Invoices" EntityType="AnaghaEnterprisesModel.Invoice" />
+          <EntitySet Name="InvoiceLines" EntityType="AnaghaEnterprisesModel.InvoiceLine" />
+          <AssociationSet Name="FK__InvoiceLi__Invoi__0CBAE877" Association="AnaghaEnterprisesModel.FK__InvoiceLi__Invoi__0CBAE877">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="InvoiceLine" EntitySet="InvoiceLines" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvoiceID" />
+          </Key>
+          <Property Name="InvoiceID" Type="Int64" Nullable="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PO_No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TransportationMode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Veh_No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LR_No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LR_Date" Type="DateTime" Precision="3" />
+          <Property Name="DateTimeSupply" Type="DateTime" Precision="3" />
+          <Property Name="CustomerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GST_No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PAN_No" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingAddress" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Total_Nos_Bag" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_Nos_Kg" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAmountBeforeTax" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_CGST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_SGST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_IGST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total_GST" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAmountAfterTax" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="TotalAfterRoundOff" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="InvoiceLines" Relationship="AnaghaEnterprisesModel.FK__InvoiceLi__Invoi__0CBAE877" FromRole="Invoice" ToRole="InvoiceLine" />
+        </EntityType>
+        <EntityType Name="InvoiceLine">
+          <Key>
+            <PropertyRef Name="InvoiceLineID" />
+          </Key>
+          <Property Name="InvoiceLineID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceID" Type="Int64" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nos_Bag" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Uom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Amount" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Discount" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="TaxableValue" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="CGST_Rate" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="CGST_Amount" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="SGST_Rate" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="SGST_Amount" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="IGST_Rate" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="IGST_Amount" Type="Decimal" Precision="13" Scale="2" />
+          <Property Name="Total" Type="Decimal" Precision="13" Scale="2" />
+          <NavigationProperty Name="Invoice" Relationship="AnaghaEnterprisesModel.FK__InvoiceLi__Invoi__0CBAE877" FromRole="InvoiceLine" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK__InvoiceLi__Invoi__0CBAE877">
+          <End Type="AnaghaEnterprisesModel.Invoice" Role="Invoice" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AnaghaEnterprisesModel.InvoiceLine" Role="InvoiceLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="InvoiceID" />
+            </Principal>
+            <Dependent Role="InvoiceLine">
+              <PropertyRef Name="InvoiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AnaghaEnterprisesModelStoreContainer" CdmEntityContainer="AnaghaEnterprisesEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Log">
+              <MappingFragment StoreEntitySet="Log">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Thread" ColumnName="Thread" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Logger" ColumnName="Logger" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Exception" ColumnName="Exception" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="AnaghaEnterprisesModel.role">
+              <MappingFragment StoreEntitySet="roles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="AnaghaEnterprisesModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="TotalAfterRoundOff" ColumnName="TotalAfterRoundOff" />
+                <ScalarProperty Name="TotalAmountAfterTax" ColumnName="TotalAmountAfterTax" />
+                <ScalarProperty Name="Total_GST" ColumnName="Total_GST" />
+                <ScalarProperty Name="Total_IGST" ColumnName="Total_IGST" />
+                <ScalarProperty Name="Total_SGST" ColumnName="Total_SGST" />
+                <ScalarProperty Name="Total_CGST" ColumnName="Total_CGST" />
+                <ScalarProperty Name="TotalAmountBeforeTax" ColumnName="TotalAmountBeforeTax" />
+                <ScalarProperty Name="Total_Nos_Kg" ColumnName="Total_Nos_Kg" />
+                <ScalarProperty Name="Total_Nos_Bag" ColumnName="Total_Nos_Bag" />
+                <ScalarProperty Name="ShippingAddress" ColumnName="ShippingAddress" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="PAN_No" ColumnName="PAN_No" />
+                <ScalarProperty Name="GST_No" ColumnName="GST_No" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="DateTimeSupply" ColumnName="DateTimeSupply" />
+                <ScalarProperty Name="LR_Date" ColumnName="LR_Date" />
+                <ScalarProperty Name="LR_No" ColumnName="LR_No" />
+                <ScalarProperty Name="Veh_No" ColumnName="Veh_No" />
+                <ScalarProperty Name="TransportationMode" ColumnName="TransportationMode" />
+                <ScalarProperty Name="PO_No" ColumnName="PO_No" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceLines">
+            <EntityTypeMapping TypeName="AnaghaEnterprisesModel.InvoiceLine">
+              <MappingFragment StoreEntitySet="InvoiceLine">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IGST_Amount" ColumnName="IGST_Amount" />
+                <ScalarProperty Name="IGST_Rate" ColumnName="IGST_Rate" />
+                <ScalarProperty Name="SGST_Amount" ColumnName="SGST_Amount" />
+                <ScalarProperty Name="SGST_Rate" ColumnName="SGST_Rate" />
+                <ScalarProperty Name="CGST_Amount" ColumnName="CGST_Amount" />
+                <ScalarProperty Name="CGST_Rate" ColumnName="CGST_Rate" />
+                <ScalarProperty Name="TaxableValue" ColumnName="TaxableValue" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Uom" ColumnName="Uom" />
+                <ScalarProperty Name="Nos_Bag" ColumnName="Nos_Bag" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
+                <ScalarProperty Name="InvoiceLineID" ColumnName="InvoiceLineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

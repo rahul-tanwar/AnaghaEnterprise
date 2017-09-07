@@ -1,0 +1,59 @@
+﻿@model int?
+
+<tr>
+    <td>@Model</td>
+    <td>
+        <input class="form-control" data-val="true" data-val-required="The Description field is required." id="InvoiceLineList_0__Description" name="InvoiceLineList[@Model].Description" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Description" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field Nos_Bag must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__Nos_Bag" name="InvoiceLineList[@Model].Nos_Bag" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Nos_Bag" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" id="InvoiceLineList_0__Uom" name="InvoiceLineList[@Model].Uom" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Uom" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field Rate must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__Rate" name="InvoiceLineList[@Model].Rate" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Rate" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." id="InvoiceLineList_0__Amount" name="InvoiceLineList[@Model].Amount" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Amount" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field Discount must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__Discount" name="InvoiceLineList[@Model].Discount" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].Discount" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field TaxableValue must be a number." id="InvoiceLineList_0__TaxableValue" name="InvoiceLineList[@Model].TaxableValue" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].TaxableValue" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field CGST_Rate must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__CGST_Rate" name="InvoiceLineList[@Model].CGST_Rate" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].CGST_Rate" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field CGST_Amount must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__CGST_Amount" name="InvoiceLineList[@Model].CGST_Amount" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].CGST_Amount" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field SGST_Rate must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__SGST_Rate" name="InvoiceLineList[@Model].SGST_Rate" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].SGST_Rate" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field SGST_Amount must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__SGST_Amount" name="InvoiceLineList[@Model].SGST_Amount" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].SGST_Amount" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field IGST_Rate must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__IGST_Rate" name="InvoiceLineList[@Model].IGST_Rate" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].IGST_Rate" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td>
+        <input class="form-control" data-val="true" data-val-number="The field IGST_Amount must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" id="InvoiceLineList_0__IGST_Amount" name="InvoiceLineList[@Model].IGST_Amount" type="text" value="">
+        <span class="field-validation-valid" data-valmsg-for="InvoiceLineList[@Model].IGST_Amount" data-valmsg-replace="true" style="display: none;"></span>
+    </td>
+    <td id='@(Model+"TotalLabel")'></td>
+    <input data-val="true" data-val-number="The field Total must be a number." data-val-regex="Enter only number" data-val-regex-pattern="^\d+(.\d{1,2})?$" name="InvoiceLineList[@Model].Total" type="hidden" value=""/>
+</tr>
