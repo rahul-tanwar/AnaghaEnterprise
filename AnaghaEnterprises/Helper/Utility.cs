@@ -1,4 +1,7 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,46 +12,34 @@ namespace AnaghaEnterprises.Helper
 {
     public static class Utility
     {
-
-
-
-        public static bool CreatePDFFromHTMLFile(string HtmlStream, string FileName)
+        public static bool PDFFromHTMLFile(string htmlFileName,string pdffile, string css)
         {
-            try
+            byte[] pdf; // result will be here
+
+            var cssText = File.ReadAllText(css);
+            var html = htmlFileName;  //File.ReadAllText(htmlFileName);
+
+
+            using (var memoryStream = new MemoryStream())
             {
-                object TargetFile = FileName;
-                string ModifiedFileName = string.Empty;
-                string FinalFileName = string.Empty;
+                var document = new Document(PageSize.LETTER, 20, 20, 60, 60);
+                var writer = PdfWriter.GetInstance(document, memoryStream);
+                document.Open();
 
-                /* To add a Password to PDF -http://aspnettutorialonline.blogspot.com/ */
-                HtmlToPdfBuilder builder = new HtmlToPdfBuilder(iTextSharp.text.PageSize.A4);
-                HtmlPdfPage first = builder.AddPage();
-                first.AppendHtml(HtmlStream);
-                byte[] file = builder.RenderPdf();
-                File.WriteAllBytes(TargetFile.ToString(), file);
+                using (var cssMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(cssText)))
+                {
+                    using (var htmlMemoryStream = new MemoryStream(System.Text.Encoding.UTF8.GetBytes(html)))
+                    {
+                        XMLWorkerHelper.GetInstance().ParseXHtml(writer, document, htmlMemoryStream, cssMemoryStream);
+                    }
+                }
 
-                iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(TargetFile.ToString());
-                ModifiedFileName = TargetFile.ToString();
-                ModifiedFileName = ModifiedFileName.Insert(ModifiedFileName.Length - 4, "1");
+                document.Close();
 
-                string password = "";
-                iTextSharp.text.pdf.PdfEncryptor.Encrypt(reader, new FileStream(ModifiedFileName, FileMode.Append), iTextSharp.text.pdf.PdfWriter.STRENGTH128BITS, password, "", iTextSharp.text.pdf.PdfWriter.AllowPrinting);
-                ////http://aspnettutorialonline.blogspot.com/
-                reader.Close();
-                if (File.Exists(TargetFile.ToString()))
-                    File.Delete(TargetFile.ToString());
-                FinalFileName = ModifiedFileName.Remove(ModifiedFileName.Length - 5, 1);
-                File.Copy(ModifiedFileName, FinalFileName);
-                if (File.Exists(ModifiedFileName))
-                    File.Delete(ModifiedFileName);
-                return true;
-               
+                pdf = memoryStream.ToArray();
+                File.WriteAllBytes(pdffile, pdf);
             }
-            catch (Exception)
-            {
-              
-            }
-            return false;
+            return true;
         }
     }
 }

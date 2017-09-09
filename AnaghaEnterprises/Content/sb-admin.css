@@ -278,6 +278,10 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
     padding-left:6px;
     padding-right:6px;
 }
+.box-title
+{
+font-size:24px;  
+}
 .box.box-primary {
     border-top-color: #3c8dbc;
 }
@@ -409,13 +413,16 @@ padding:5px;
     margin-top: 3px;
     color: #3c8dbc;
 }
-.reportsummery th {
+.reportsummery th , .reportsummery table tr td:first-child {
     font-size: 12px;
     padding: 5px;
     font-weight:500;
 }
-   
 
+.height-100vh {
+    height:100vh!important;
+}
+   
 
 @media (max-width:667px) {
     .panel {

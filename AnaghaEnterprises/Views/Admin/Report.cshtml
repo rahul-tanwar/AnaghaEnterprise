@@ -16,35 +16,38 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-primary">
+            <div class="box box-primary height-100vh">
                 <div class="box-header with-border">
                     <h3 class="box-title">Search Invoice</h3>
                 </div>
                 <div class="box-body">
 
                     <div class="col-md-12">
-                        <div class="input-group">
-                            <input type="text" name="daterange" id="daterange1" />
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="input-group ">
+                                    <input type="text" class="form-control" name="daterange" id="daterange1" />
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                            </div>     
+                            <div class="col-md-8">
+                              <button class="btn btn-primary hidden-print disabled" style="float:right" id="print"><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                             </div>
                         </div>
-
-                        <a href="#" id="cmd">generate PDF</a>
-
                     </div>
-
                     <hr />
     
 
-                        <div class="row" id="InvoiceGSTReportContainer" style="background-color:white;">
+                        <div class="row" id="InvoiceGSTReportContainer">
 
                 @{
                     if (Model != null && Model.InvoiceList != null)
                     {
 
                         <div class="col-md-12">
-                            <table class="table table-responsive table-bordered" style="width:100%;border" cellspacing="0">
+                            <table  class="table table-responsive table-bordered"  cellspacing="0">
                                 <thead>
-                                    <tr style="background:white;">
+                                    <tr>
                                         <th>Invoice Id</th>
                                         <th>Invoice Date</th>
                                         <th>IGST</th>
@@ -72,25 +75,19 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-12 reportsummery">
+                        <div class="col-md-12 reportsummary">
                             <div class="col-md-4 reset pull-right">
-                                <table class="table table-bordered">
-                                    <tr><th>Total CGST:</th><td>@Model.TotalCGST</td></tr>
-                                    <tr><th>Total IGST:</th><td>@Model.TotalIGST</td></tr>
-                                    <tr><th>Total SGST:</th><td>@Model.TotalSGST</td></tr>
-                                    <tr><th>Total GST:</th><td>@Model.TotalGST</td></tr>
-                                    <tr><th>Total Amount Before Tax:</th><td>@Model.TotalAmountBefore</td></tr>
-                                    <tr><th>Total Amount After Tax:</th><td>@Model.TotalAmountAfter</td></tr>
+                                <table class="table table-bordered" cellspacing="0" >
+                                    <tr><td>Total CGST:</td><td>@Model.TotalCGST</td></tr>
+                                    <tr><td>Total IGST:</td><td>@Model.TotalIGST</td></tr>
+                                    <tr><td>Total SGST:</td><td>@Model.TotalSGST</td></tr>
+                                    <tr><td>Total GST:</td><td>@Model.TotalGST</td></tr>
+                                    <tr><td>Total Amount Before Tax:</td><td>@Model.TotalAmountBefore</td></tr>
+                                    <tr><td>Total Amount After Tax:</td><td>@Model.TotalAmountAfter</td></tr>
                                 </table>
 
                             </div>
                         </div>
-
-
-                    }
-                    else
-                    {
-
                     }
                 }
 
@@ -99,10 +96,6 @@
 
 
                     </div>
-                <div id="editor"></div>
-                <div class="box-footer">
-
-                </div>
             </div>
         </div>
 
@@ -125,27 +118,33 @@
 
      });
 
-          $('#cmd').click(function () {
-            var htmlstring = JSON.stringify({ 'htmlstring': $("#InvoiceGSTReportContainer").html() });
-            $.ajax({
-                url: "../Admin/generate",
-                type: "POST",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: htmlstring, // pass that text to the server as a correct JSON String
-                success: function (msg) {
-                    debugger;
-                    if (msg == true)
-                    {
-                        window.location = '/Admin/Download';
-                    }
-                    
-                },
-                error: function (type) {
-                    window.location = '/Admin/Download';
-                }
+        $('#print').click(function () {
+            debugger;
+            if (!$(this).hasClass("disabled"))
+            {
+                $("#blokkolowait").show();
+                var htmlstring = JSON.stringify({ 'htmlstring': $("#InvoiceGSTReportContainer").html() });
+                $.ajax({
+                    url: "../Admin/generate",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: htmlstring, // pass that text to the server as a correct JSON String
+                    success: function (msg) {
+                        if (msg == true) {
+                            window.location = '/Admin/Download';
+                        }
+                        $("#blokkolowait").hide();
 
-            });
+                    },
+                    error: function (type) {
+                        window.location = '/Admin/Download';
+                        $("#blokkolowait").hide();
+                    }
+
+                });
+            }
+           
         });
     });
 </script>

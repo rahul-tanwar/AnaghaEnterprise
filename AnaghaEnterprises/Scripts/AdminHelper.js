@@ -126,12 +126,12 @@ AdminHelper.GetInvoiceReport = function(daterange) {
     if (!!daterange) {
         $.post("../Admin/GetReport", { dateRange: daterange }, function (result) {
             if (!!result) {
-                debugger;
-                var rr = $(result).find("#InvoiceGSTReportContainer").html();
-                $("#InvoiceGSTReportContainer").html(rr);
-            }
+                $("#InvoiceGSTReportContainer").html($(result).find("#InvoiceGSTReportContainer").html());
+               $("#print").removeClass("disabled");
+             }
             else {
-                CommonJS.showMessage(CommonJS.State.ERROR, "Something goes wrong please try after some time");
+                $("#InvoiceGSTReportContainer").html("<div> no record found </div>");
+                $("#print").addClass("disabled");
             }
         });
 

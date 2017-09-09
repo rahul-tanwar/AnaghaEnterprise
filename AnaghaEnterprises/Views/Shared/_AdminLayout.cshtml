@@ -19,7 +19,7 @@
     <link href="~/Content/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet" />
     <link href="~/Content/datetimerange.css" rel="stylesheet" />
     <link href="~/Content/tooltip-validation.css" rel="stylesheet" />
-
+    <link href="~/Content/common-style.css" rel="stylesheet" />
 
     <!-- Bootstrap core JavaScript -->
     @*<script src="~/Scripts/jquery.js"></script>*@
@@ -52,11 +52,11 @@
     <script src="~/scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/scripts/jquery.validate.mvc.js"></script>
     <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>*@
    @*<script src="~/Scripts/jspdf.js"></script>*@
     <script src="~/Scripts/sb-admin.js"></script>
-
+    <script src="~/Scripts/loader.js"></script>
     <!-- Include Date Range Picker -->
   
  
@@ -153,6 +153,9 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fa fa-angle-up"></i>
     </a>
+
+    <ul id="blokkolowait" title="Kérem várjon..."><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+
     <!-- Logout Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -173,7 +176,7 @@
             </div>
         </div>
     </div>
- 
+   
 </body>
 </html>
 <script>

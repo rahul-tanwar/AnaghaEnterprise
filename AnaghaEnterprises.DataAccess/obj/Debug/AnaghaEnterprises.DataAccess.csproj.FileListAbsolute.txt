@@ -7,3 +7,4 @@ C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\Anagha
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\obj\Debug\AnaghaEnterprises.DataAccess.dll
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\obj\Debug\AnaghaEnterprises.DataAccess.pdb
+C:\Users\Twilight\Documents\visual studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises.DataAccess\obj\Debug\AnaghaEnterprises.DataAccess.csprojResolveAssemblyReference.cache

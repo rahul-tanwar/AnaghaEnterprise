@@ -7,6 +7,10 @@ using System.Web.Mvc;
 using System.Web.Security;
 using AnaghaEnterprises.Models;
 using AnaghaEnterprises.Helper;
+using System.Text;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace AnaghaEnterprises.Controllers
 {
@@ -92,26 +96,43 @@ namespace AnaghaEnterprises.Controllers
 
        public bool generate(string htmlstring)
         {
+
+          //  StringBuilder sb = new StringBuilder();
+           //Generate Invoice (Bill) Header.
          //   string strHtml = string.Empty;
-         //   //HTML File path -http://aspnettutorialonline.blogspot.com/
-         ////   string htmlFileName = Server.MapPath("~") + "\\files\\" + "ConvertHTMLToPDF.html";
-         //   string htmlFileName =    Server.MapPath("~/files/ConvertHTMLToPDF.htm");
+            //   //HTML File path -http://aspnettutorialonline.blogspot.com/
+          //    string htmlFileName = Request.PhysicalApplicationPath + "\\files\\" + "ConvertHTMLToPDF.htm";
+            //string htmlFileName =    Server.MapPath("~/files/ConvertHTMLToPDF.html");
             //pdf file path. -http://aspnettutorialonline.blogspot.com/
             string pdfFileName = Request.PhysicalApplicationPath + "\\files\\" + "ConvertHTMLToPDF.pdf";
-
+            string cssFileName = Server.MapPath("~/Content/style.css");
             //reading html code from html file
             //FileStream fsHTMLDocument = new FileStream(htmlFileName, FileMode.Open, FileAccess.Read);
             //StreamReader srHTMLDocument = new StreamReader(fsHTMLDocument);
             //strHtml = srHTMLDocument.ReadToEnd();
             //srHTMLDocument.Close();
-
+            //StringReader sr = new StringReader(sb.ToString());
+            //Document pdfDoc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
+            //HTMLWorker htmlparser = new HTMLWorker(pdfDoc);
+            //PdfWriter writer = PdfWriter.GetInstance(pdfDoc, Response.OutputStream);
+            //pdfDoc.Open();
+            //htmlparser.Parse(sr);
+            //pdfDoc.Close();
+            //Response.ContentType = "application/pdf";
+            //Response.AddHeader("content-disposition", "attachment;filename=Invoice_" + ".pdf");
+            //Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            //Response.Write(pdfDoc);
+            //Response.End();
+            //return File(Response.OutputStream, "application/pdf", "attachment;filename=Invoice_" + ".pdf");
             //strHtml = strHtml.Replace("\r\n", "");
             //strHtml = strHtml.Replace("\0", "");
-            if (Utility.CreatePDFFromHTMLFile(htmlstring, pdfFileName))
-            {
-                return true;
-            }
+            //if (Utility.CreatePDFFromHTMLFile(sb.ToString(), pdfFileName, cssFileName))
+            //{
+            //    return true;
+            //}
+            Utility.PDFFromHTMLFile(htmlstring, pdfFileName, cssFileName);
             return false;
+          
        }
 
         [HttpGet]
@@ -120,5 +141,5 @@ namespace AnaghaEnterprises.Controllers
             string fullPath = Path.Combine(Server.MapPath("~/files"), "ConvertHTMLToPDF.pdf");
             return File(fullPath, "application/pdf", "ConvertHTMLToPDF.pdf");
         }
-    }
+     }
 }

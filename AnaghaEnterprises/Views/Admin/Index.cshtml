@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
-            <div class="box box-primary">
+            <div class="box box-primary height-100vh">
                 <div class="box-header with-border">
                     <h3 class="box-title">Bill Invoice</h3>
                 </div>
@@ -302,18 +302,18 @@
         });
 
         //$.validator.methods.date = function (value, element) {
-        //    Globalize.culture("en-GB");
-        //    return this.optional(element) || Globalize.parseDate(value) !== null;
+        //    globalize.culture("en-gb");
+        //    return this.optional(element) || globalize.parsedate(value) !== null;
         //}
 
-        //$.culture = Globalize.culture("en-GB");
+        //$.culture = globalize.culture("en-gb");
         //$.validator.methods.date = function (value, element) {
-        //    //This is not ideal but Chrome passes dates through in ISO1901 format regardless of locale
+        //    //this is not ideal but chrome passes dates through in iso1901 format regardless of locale
         //    //and despite displaying in the specified format.
 
         //    return this.optional(element)
-        //        || Globalize.parseDate(value, "dd/MM/yyyy", "en-GB")
-        //        || Globalize.parseDate(value, "yyyy-mm-dd");
+        //        || globalize.parsedate(value, "dd/mm/yyyy", "en-gb")
+        //        || globalize.parsedate(value, "yyyy-mm-dd");
         //}
     });
 

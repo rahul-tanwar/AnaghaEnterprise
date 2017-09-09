@@ -95,3 +95,4 @@ C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\Anagha
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises\obj\Debug\AnaghaEnterprises.csprojResolveAssemblyReference.cache
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises\obj\Debug\AnaghaEnterprises.dll
 C:\Users\Twilight\Documents\Visual Studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises\obj\Debug\AnaghaEnterprises.pdb
+C:\Users\Twilight\Documents\visual studio 2015\Projects\AnaghaEnterprises\AnaghaEnterprises\bin\itextsharp.xmlworker.dll

@@ -97,7 +97,7 @@ namespace AnaghaEnterprises.Helper
         #region Members
 
         private List<HtmlPdfPage> _Pages;
-        private StyleSheet _Styles;
+        public StyleSheet _Styles;
 
         #endregion
 
